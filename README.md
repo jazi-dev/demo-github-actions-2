@@ -8,7 +8,7 @@ Browser -> Nginx frontend -> Express backend -> PostgreSQL
 
 ```bash
 cd ~/demo-github-actions-2
-cp .env.example .env   # already filled for local use
+
 docker compose up --build
 ```
 
