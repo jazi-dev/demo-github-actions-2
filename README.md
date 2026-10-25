@@ -62,3 +62,5 @@ git push -u origin main
 
 What the workflow does: checkout the code, log in to Docker Hub, build `./frontend` and `./backend`, push `:latest` tags.
 # demo-github-actions-2
+
+# git it up 
