@@ -61,3 +61,4 @@ git push -u origin main
 6. Open the GitHub **Actions** tab. The `Build and Push Docker Images` workflow should run on that push.
 
 What the workflow does: checkout the code, log in to Docker Hub, build `./frontend` and `./backend`, push `:latest` tags.
+# demo-github-actions-2
