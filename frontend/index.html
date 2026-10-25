@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo-github-actions-2</title>
+    <style>
+      body {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 0 20px;
+        font-family: Arial, sans-serif;
+      }
+      form {
+        display: flex;
+        gap: 8px;
+      }
+      input {
+        flex: 1;
+        padding: 10px;
+      }
+      button {
+        padding: 10px 16px;
+        cursor: pointer;
+      }
+      li {
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>demo-github-actions-2</h1>
+
+    <form id="idea-form">
+      <input id="text" placeholder="Capture an idea" required />
+      <button type="submit">Add</button>
+    </form>
+
+    <ul id="ideas"></ul>
+
+    <script>
+      const form = document.querySelector("#idea-form");
+      const text = document.querySelector("#text");
+      const list = document.querySelector("#ideas");
+
+      async function loadIdeas() {
+        const response = await fetch("/api/ideas");
+        const ideas = await response.json();
+        list.innerHTML = ideas.map((idea) => `<li>${idea.text}</li>`).join("");
+      }
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        await fetch("/api/ideas", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text: text.value }),
+        });
+        text.value = "";
+        await loadIdeas();
+      });
+
+      loadIdeas();
+    </script>
+  </body>
+</html>
